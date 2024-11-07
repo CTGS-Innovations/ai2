@@ -2,19 +2,29 @@
   "name": "ai2",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
+"scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "clean": "rm -rf .next/ node_modules/",
     "clean:install": "npm run clean && npm install && npm run dev",
-    "build:pages": "npx @cloudflare/next-on-pages",    
+    "build:pages": "npx @cloudflare/next-on-pages",
+
     "deploy:dev": "npm run build:pages && wrangler pages deploy --branch dev",
-    "deploy:stag": "npm run build:pages && wrangler pages deploy --branch staging",
-    "deploy:prod": "npm run build:pages && wrangler pages deploy --branch master",        
-    "cf:typegen": "wrangler types --env-interface CloudflareEnv env.d.ts"
-  },
+    "deploy:stage": "npm run build:pages && wrangler pages deploy --branch staging",
+    "deploy:prod": "npm run build:pages && wrangler pages deploy --branch master",
+    
+    "cf:typegen": "wrangler types --env-interface CloudflareEnv env.d.ts",
+
+    // Additional Wrangler Commands
+    "publish": "wrangler publish",
+    "dev:remote": "wrangler dev --remote",
+    "secrets:sync": "wrangler secret sync",
+    "logs:tail": "wrangler tail --env production",
+    "tail:prod": "wrangler pages deployment tail --environment production --project-name ai2",
+    "migrations:apply": "wrangler d1 migrations apply"
+},
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.0",
     "@types/recharts": "^1.8.29",
