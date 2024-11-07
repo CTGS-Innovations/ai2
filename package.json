@@ -9,7 +9,7 @@
     "lint": "next lint",
     "deploy:branch": "wrangler pages deploy --branch master",
     "deploy:production": "wrangler pages deploy --production",
-    "deploy:preview": "wrangler pages deploy ./out --branch preview",
+    "deploy:preview": "wrangler pages deploy --branch preview",
     "pages:build": "npx @cloudflare/next-on-pages",
     "preview": "npm run pages:build && wrangler pages dev",
     "deploy": "npm run pages:build && wrangler pages deploy",
@@ -17,12 +17,14 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.0",
+    "@types/recharts": "^1.8.29",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.454.0",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
+    "recharts": "^2.13.3",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7"
   },

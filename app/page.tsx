@@ -1,5 +1,21 @@
+"use client";
+
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+  LineChart,
+  Line,
+} from "recharts";
 
 export default function Home() {
   return (
@@ -31,6 +47,93 @@ export default function Home() {
             >
               Learn More
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* New Analytics Section */}
+      <section className="w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <h2 className="mb-8 text-center text-3xl font-bold text-white sm:text-4xl">
+          Real-time Performance Metrics
+        </h2>
+        <div className="grid gap-8 lg:grid-cols-2">
+          {/* Focus Score Chart */}
+          <div className="rounded-2xl bg-slate-800/50 p-6 backdrop-blur-sm">
+            <h3 className="mb-4 text-xl font-semibold text-white">Focus Score Trends</h3>
+            <div className="h-[300px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={focusScoreData}>
+                  <defs>
+                    <linearGradient id="focusScore" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#8B5CF6" stopOpacity={0.8} />
+                      <stop offset="95%" stopColor="#3B82F6" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                  <XAxis dataKey="day" stroke="#94A3B8" />
+                  <YAxis stroke="#94A3B8" />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: "#1E293B",
+                      border: "none",
+                      borderRadius: "0.5rem",
+                      color: "#F8FAFC",
+                    }}
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="score"
+                    stroke="#8B5CF6"
+                    fillOpacity={1}
+                    fill="url(#focusScore)"
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* Productivity Distribution */}
+          <div className="rounded-2xl bg-slate-800/50 p-6 backdrop-blur-sm">
+            <h3 className="mb-4 text-xl font-semibold text-white">Focus Distribution</h3>
+            <div className="h-[300px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={productivityData}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={80}
+                    fill="#8884d8"
+                    paddingAngle={5}
+                    dataKey="value"
+                  >
+                    {productivityData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: "#1E293B",
+                      border: "none",
+                      borderRadius: "0.5rem",
+                      color: "#F8FAFC",
+                    }}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+            <div className="mt-4 grid grid-cols-2 gap-4">
+              {productivityData.map((entry, index) => (
+                <div key={entry.name} className="flex items-center">
+                  <div
+                    className="mr-2 h-3 w-3 rounded-full"
+                    style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                  />
+                  <span className="text-sm text-slate-300">{entry.name}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -104,3 +207,22 @@ const features = [
     description: "Seamless interaction with your AI focus companion through a modern interface."
   }
 ];
+
+const focusScoreData = [
+  { day: "Mon", score: 85 },
+  { day: "Tue", score: 92 },
+  { day: "Wed", score: 87 },
+  { day: "Thu", score: 95 },
+  { day: "Fri", score: 89 },
+  { day: "Sat", score: 82 },
+  { day: "Sun", score: 91 },
+];
+
+const productivityData = [
+  { name: "Deep Focus", value: 40 },
+  { name: "Light Focus", value: 30 },
+  { name: "Breaks", value: 15 },
+  { name: "Distractions", value: 15 },
+];
+
+const COLORS = ["#8B5CF6", "#3B82F6", "#10B981", "#F59E0B"];
