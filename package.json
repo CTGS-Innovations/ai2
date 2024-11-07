@@ -8,7 +8,6 @@
     "start": "next start",
     "lint": "next lint",
     "deploy:branch": "wrangler pages deploy --branch master",
-    "deploy:production": "wrangler pages deploy --production",
     "deploy:preview": "wrangler pages deploy --branch preview",
     "pages:build": "npx @cloudflare/next-on-pages",
     "preview": "npm run pages:build && wrangler pages dev",
