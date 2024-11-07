@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "clean:install": "rm -rf .next/ node_modules/ && npm install && npm run dev",
     "deploy:branch": "wrangler pages deploy --branch master",
     "deploy:preview": "wrangler pages deploy --branch preview",
     "pages:build": "npx @cloudflare/next-on-pages",
