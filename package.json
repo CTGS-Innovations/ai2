@@ -12,7 +12,9 @@
     "pages:build": "npx @cloudflare/next-on-pages",
     "preview": "npm run pages:build && wrangler pages dev",
     "deploy": "npm run pages:build && wrangler pages deploy",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts"
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts",
+    "deploy:staging": "next build && wrangler pages deploy .next --project-name=ai2 --branch=staging --commit-dirty=true",
+    "deploy:prod": "next build && wrangler pages deploy .next --project-name=ai2 --branch=main --commit-dirty=true"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.0",
