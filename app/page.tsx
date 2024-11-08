@@ -14,7 +14,7 @@ export default function Home() {
             </h1>
           </div>
           <p className="mx-auto mt-6 max-w-2xl text-xl text-slate-300">
-            Your personal AI companion that helps you stay focused and achieve more. 
+            BRANCH personal AI companion that helps you stay focused and achieve more. 
             Transform your productivity with intelligent, personalized focus enhancement.
           </p>
           <div className="mt-10 flex gap-4">
