@@ -22,7 +22,6 @@ export default function NotFound() {
     </>
   );
 }
-
 const styles = {
   error: {
     fontFamily:
@@ -56,3 +55,4 @@ const styles = {
     margin: 0,
   },
 } as const;
+
